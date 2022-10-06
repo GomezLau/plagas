@@ -1,0 +1,41 @@
+import elementos.*
+import plagas.*
+
+describe "tests de plagas y elementos"{
+	const cucaracha1 = new Cucarachas(pesoPromedio=10,poblacion=20)
+	const perro1 = new Mascota(nivelDeSalud=300)
+	const hogar1 = new Hogar(nivelDeMugre=5,confort=20)
+	const huerta1= new Huerta(nivelDeProduccion=30,capacidadDeProduccion=70)
+	const mosquito1 = new Mosquitos(poblacion=100)
+	
+	
+	test "plaga ataca a perro (perro)" {
+		perro1.sufrirAtaqueDe(cucaracha1)
+		assert.equals(perro1.nivelDeSalud(),289)
+	}
+	
+	test "plaga ataca a perro (cucaracha)" {
+		perro1.sufrirAtaqueDe(cucaracha1)
+		assert.that(cucaracha1.poblacion()==22 and cucaracha1.pesoPromedio()==12)
+	}
+	
+	test "hogar es bueno"{
+		assert.that(hogar1.esBueno())
+	}
+	
+	test "plaga ataca a hogar (hogar)"{
+		hogar1.sufrirAtaqueDe(cucaracha1)
+		assert.equals(hogar1.nivelDeMugre(),16)
+	}
+	
+	test "barrio copado"{
+		barrio.elementos().addAll([perro1,hogar1,huerta1])
+		assert.that(barrio.esCopado())
+	}
+	
+	test "plaga ataca a huerta (huerta)" {
+		huerta1.sufrirAtaqueDe(mosquito1)//poblacion 110
+		assert.equals(huerta1.nivelDeProduccion(),19)
+	}
+
+}
